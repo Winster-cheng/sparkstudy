@@ -28,7 +28,7 @@
 
     <modules>
         <module>spark_hive</module>
-        <module>spark-wordcount</module>
+        <module>wordcount</module>
     </modules>
 
     <dependencies>
