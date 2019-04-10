@@ -30,6 +30,7 @@
         <module>sparkhive</module>
         <module>wordcount</module>
         <module>topK</module>
+        <module>median</module>
     </modules>
 
     <dependencies>
