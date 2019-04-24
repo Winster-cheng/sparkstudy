@@ -9,6 +9,7 @@ object KafkaTest {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setMaster("local[2]").setAppName("KafkaTest")
     val sc = new SparkContext(conf)
+    sc.setLogLevel("ERROR")
     val ssc = new StreamingContext(sc,Seconds(2))
     //使用kafka是需要下面的目录的，因为SparkStreaming自己要维护一些东西的，要持久化，存到内存是易丢失的。
 //    ssc.checkpoint("hdfs://myha01/streamingkafka")
@@ -31,9 +32,8 @@ object KafkaTest {
 
     /**
       * 数据的处理
-      * 也已经比较正式了
       */
-    kafkaDStream.flatMap(_.split(","))
+    kafkaDStream.flatMap(_.split(" "))
       .map((_,1))
       .reduceByKey(_+_)
       .print()
