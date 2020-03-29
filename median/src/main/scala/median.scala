@@ -1,6 +1,11 @@
 import org.apache.spark.{SparkConf, SparkContext}
 import scala.util.control.Breaks._
-
+/**
+  * 求中位数，数据是分布式存储的
+  * 将整体的数据分为K个桶，统计每个桶内的数据量，然后统计整个数据量
+  * 根据桶的数量和总的数据量，可以判断数据落在哪个桶里，以及中位数的偏移量
+  * 取出这个中位数
+  */
 object median {
   def main (args: Array[String]) {
     val conf =new SparkConf().setAppName("Median").setMaster("local[1]")
